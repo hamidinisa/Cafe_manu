@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Roast & Craft — %100 Yüzdelik Akışkan Dijital Kafe Menüsü, Güvenli Admin & GitHub + Docker Paketi
 
 Bu proje, yerel ağdaki (Wi-Fi / LAN) veya buluttaki tüm cihazlardan (telefon, tablet, mutfak ekranı ve geniş ekran TV/kiosk) bozulmadan erişilebilen **%100 yüzdelik (`%`) akışkan (fluid) menü paneline**, **OWASP güvenlik standartlarına** ve **GitHub CI/CD entegrasyonuna** sahiptir.
@@ -31,3 +32,6 @@ cp .env.example .env
 docker compose up -d --build
 ```
 Aynı Wi-Fi ağındaki tüm cihazlar `http://<BILGISAYAR-IP>:8080` adresinden erişebilir.
+=======
+# Cafe_manu
+>>>>>>> 3c4e9ccc748fd0b37a81ad9321e17e189370b1ad
