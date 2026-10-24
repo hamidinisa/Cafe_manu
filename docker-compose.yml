@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  cafe-menu-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: roast_craft_cafe_menu
+    restart: unless-stopped
+    ports:
+      # 0.0.0.0:8080 sayesinde aynı yerel ağdaki (Wi-Fi/LAN) tüm telefon, tablet ve bilgisayarlar erişebilir
+      - "0.0.0.0:8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH}
+      - SESSION_SECRET=${SESSION_SECRET:-change_this_to_a_64_char_random_hex_secret}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-*}
+    volumes:
+      - cafe_sqlite_data:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/api/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  cafe_sqlite_data:
